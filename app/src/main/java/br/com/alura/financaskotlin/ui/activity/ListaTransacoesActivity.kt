@@ -17,7 +17,7 @@ class ListaTransacoesActivity : AppCompatActivity() {
 
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, transacoes)
 
-        lista_transacoes_listview.adapter = ListaTransacoesAdapter()
+        lista_transacoes_listview.adapter = ListaTransacoesAdapter(transacoes, this)
     }
 
 }
