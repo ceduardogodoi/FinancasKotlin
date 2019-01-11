@@ -16,7 +16,7 @@ class ListaTransacoesAdapter(private val transacoes: List<Transacao>,
         val viewCriada = LayoutInflater.from(context).inflate(R.layout.transacao_item, parent, false)
 
         val transacao = transacoes[posicao]
-        viewCriada.transacao_valor.text = transacao.getValor().toString()
+        viewCriada.transacao_valor.text = transacao.valor.toString()
 
         return viewCriada
     }
