@@ -5,5 +5,6 @@ import java.util.Calendar
 
 /* Internamente o Kotlin esta usando getters and setters */
 class Transacao(val valor: BigDecimal,
-                val categoria: String,
-                val data: Calendar)
+                val categoria: String = "Indefinida",
+                val tipo: Tipo,
+                val data: Calendar = Calendar.getInstance())
