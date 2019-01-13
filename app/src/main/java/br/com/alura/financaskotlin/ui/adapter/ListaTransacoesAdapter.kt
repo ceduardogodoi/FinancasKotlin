@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import br.com.alura.financaskotlin.R
+import br.com.alura.financaskotlin.extension.formataParaBrasileiro
 import br.com.alura.financaskotlin.model.Transacao
 import kotlinx.android.synthetic.main.transacao_item.view.*
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class ListaTransacoesAdapter(private val transacoes: List<Transacao>,
                              private val context: Context) : BaseAdapter() {
@@ -21,10 +20,7 @@ class ListaTransacoesAdapter(private val transacoes: List<Transacao>,
         viewCriada.transacao_valor.text = String.format(transacao.valor.toString())
         viewCriada.transacao_categoria.text = transacao.categoria
 
-        val formatoBrasileiro = "dd/MM/yyyy"
-        val format = SimpleDateFormat(formatoBrasileiro, Locale("pt", "BR"))
-        val dataFormatada = format.format(transacao.data.time)
-        viewCriada.transacao_data.text = dataFormatada
+        viewCriada.transacao_data.text = transacao.data.formataParaBrasileiro()
 
         return viewCriada
     }
