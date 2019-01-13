@@ -9,7 +9,7 @@ import br.com.alura.financaskotlin.R
 import br.com.alura.financaskotlin.model.Transacao
 import kotlinx.android.synthetic.main.transacao_item.view.*
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 class ListaTransacoesAdapter(private val transacoes: List<Transacao>,
                              private val context: Context) : BaseAdapter() {
