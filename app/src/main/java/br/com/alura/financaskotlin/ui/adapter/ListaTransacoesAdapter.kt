@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import br.com.alura.financaskotlin.R
 import br.com.alura.financaskotlin.extension.formataParaBrasileiro
+import br.com.alura.financaskotlin.extension.limitaEmAte
 import br.com.alura.financaskotlin.model.Tipo
 import br.com.alura.financaskotlin.model.Transacao
 import kotlinx.android.synthetic.main.transacao_item.view.*
 
 class ListaTransacoesAdapter(private val transacoes: List<Transacao>,
                              private val context: Context) : BaseAdapter() {
+
+    private val limiteDaCategoria = 14
 
     override fun getView(posicao: Int, view: View?, parent: ViewGroup?): View {
         val viewCriada = LayoutInflater.from(context).inflate(R.layout.transacao_item, parent, false)
@@ -22,19 +25,18 @@ class ListaTransacoesAdapter(private val transacoes: List<Transacao>,
 
         if (transacao.tipo == Tipo.RECEITA) {
             viewCriada.transacao_valor.setTextColor(ContextCompat.getColor(context, R.color.receita))
-        } else {
-            viewCriada.transacao_valor.setTextColor(ContextCompat.getColor(context, R.color.despesa))
-        }
-
-        if (transacao.tipo === Tipo.RECEITA) {
             viewCriada.transacao_icone.setBackgroundResource(R.drawable.icone_transacao_item_receita)
         } else {
+            viewCriada.transacao_valor.setTextColor(ContextCompat.getColor(context, R.color.despesa))
             viewCriada.transacao_icone.setBackgroundResource(R.drawable.icone_transacao_item_despesa)
         }
 
-        viewCriada.transacao_valor.text = transacao.valor.formataParaBrasileiro()
+        viewCriada.transacao_valor.text = transacao.valor
+            .formataParaBrasileiro()
         viewCriada.transacao_categoria.text = transacao.categoria
-        viewCriada.transacao_data.text = transacao.data.formataParaBrasileiro()
+            .limitaEmAte(limiteDaCategoria)
+        viewCriada.transacao_data.text = transacao.data
+            .formataParaBrasileiro()
 
         return viewCriada
     }

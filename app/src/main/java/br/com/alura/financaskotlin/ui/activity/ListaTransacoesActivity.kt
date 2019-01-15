@@ -8,7 +8,7 @@ import br.com.alura.financaskotlin.model.Transacao
 import br.com.alura.financaskotlin.ui.adapter.ListaTransacoesAdapter
 import kotlinx.android.synthetic.main.activity_lista_transacoes.*
 import java.math.BigDecimal
-import java.util.*
+import java.util.Calendar
 
 class ListaTransacoesActivity : AppCompatActivity() {
 
@@ -17,7 +17,12 @@ class ListaTransacoesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_lista_transacoes)
 
         val transacoes = listOf(
-            Transacao(tipo = Tipo.DESPESA, data = Calendar.getInstance(), valor = BigDecimal(20.5)), // Named Parameter
+            Transacao(
+                categoria = "Almoco de final de semana",
+                tipo = Tipo.DESPESA,
+                data = Calendar.getInstance(),
+                valor = BigDecimal(20.5)
+            ), // Named Parameter
             Transacao(BigDecimal(100.0), "Economia", Tipo.RECEITA),
             Transacao(valor = BigDecimal(200.0), tipo = Tipo.DESPESA),
             Transacao(valor = BigDecimal(500.0), categoria = "Premio", tipo = Tipo.RECEITA)
